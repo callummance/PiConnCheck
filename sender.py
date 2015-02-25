@@ -23,9 +23,9 @@ class stillAlive:
                 self.sendMsg(self.key)
                 self.keyTransmitted = True
             else:
-                print("a")
                 self.sendMsg(dencrypt(bMessage, self.key))
         except ConnectionRefusedError:
+            print("Could not connect")
             return
 
     def sendMsg(self, msg):

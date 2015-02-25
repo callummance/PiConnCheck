@@ -3,6 +3,7 @@ import threading
 import time
 import os
 import sender
+import sys
 #!/usr/bin/env python
 
 import socket, threading
@@ -130,6 +131,16 @@ class reciever(threading.Thread):
         srvStat = "ALL_CLEAR"
 
 #========================THE PROGRAM STARTS HERE============================#
+
+#Load addresses of other pis from a file
+with open("./ip.addresses", "r") as f:
+    ips = f.read().splitlines()
+
+print("Loading list of connections...\n" + str(ips))
+
+if len(sys.argv) > 1:
+    host = sys.argv[1]
+
 
 recServer = reciever()
 recServer.start()
