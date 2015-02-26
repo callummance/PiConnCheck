@@ -22,10 +22,11 @@ class stillAlive:
                 self.sock.connect((self.targetIP, self.port))
                 self.sendMsg(self.key)
                 self.keyTransmitted = True
+				print ("Key sent")
             else:
                 self.sendMsg(dencrypt(bMessage, self.key))
-        except ConnectionRefusedError:
-            print("Could not connect")
+				print ("sent message: " + str(bMessage))
+        except socket.error:
             return
 
     def sendMsg(self, msg):
