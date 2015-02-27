@@ -109,10 +109,10 @@ def updateDevices(targets):
 
 class reciever(threading.Thread):
     def __init__(self):
-        threading.Thread.__init__(self)
+        threading.Thread.__init__(self, devices)
+        self.devices = devices
 
     def run(self):
-        global devices
         global noDevices
         global tcpsock
         global srvStat
@@ -142,7 +142,7 @@ if len(sys.argv) > 1:
     host = sys.argv[1]
 
 
-recServer = reciever()
+recServer = reciever(devices)
 recServer.start()
 
 for device in ips:
